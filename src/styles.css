@@ -1,0 +1,134 @@
+body {
+  font-family: "Zilla Slab", serif;
+  /* sunrise background */
+  /* background: rgb(241,145,167);
+  background: linear-gradient(0deg, rgba(241,145,167,1) 0%, rgba(240,228,233,1) 32%, rgba(113,213,246,1) 100%); */
+
+  /* sunset background */
+  /* background: rgb(250,171,49);
+  background: linear-gradient(0deg, rgba(250,171,49,1) 0%, rgba(232,46,49,1) 38%, rgba(140,52,98,1) 73%, rgba(65,58,78,1) 100%); */
+
+  /* daytime background */
+  /* background: rgb(243,251,254);
+background: linear-gradient(0deg, rgba(243,251,254,1) 0%, rgba(193,235,247,1) 49%, rgba(48,127,184,1) 100%); */
+
+  /* nighttime background */
+  /* background: rgb(65,43,107);
+background: linear-gradient(0deg, rgba(65,43,107,1) 0%, rgba(42,22,65,1) 50%, rgba(2,2,23,1) 100%); */
+}
+
+h1 {
+  font-family: "Comfortaa", cursive;
+  margin: 0 auto;
+  color: #e91e63;
+  letter-spacing: 0.6rem;
+}
+
+.city-img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.img-thumbnail {
+  border: 3px solid rgb(233, 30, 99, 0.2);
+}
+
+.card-no-border {
+  border: none;
+  background: none;
+  max-width: 50%;
+}
+
+.col-lg-2 {
+  font-size: 16pt;
+  line-height: 2em;
+}
+
+.bi {
+  font-size: 20pt;
+  line-height: 1.6em;
+}
+
+.last-day {
+  margin-bottom: 50px;
+}
+
+.first-day {
+  margin-top: 20px;
+}
+
+.weather-extras {
+  padding: 20px;
+  transition: ease-in-out 0.2s;
+}
+
+.weather-extras:hover {
+  color: #e91e63;
+}
+
+.custom-radio {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes click-wave {
+  0% {
+    height: 20px;
+    width: 20px;
+    opacity: 0.1;
+    position: relative;
+  }
+  100% {
+    height: 50px;
+    width: 50px;
+    margin-left: -15px;
+    margin-top: -15px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relavtive;
+  top: 5px;
+  height: 20px;
+  width: 20px;
+  transition: all 0.25s ease-out 0s;
+  background: #cbd1d8;
+  border: 1px solid #9faab7;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #e91e63;
+  border: none;
+}
+
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.25s;
+  -moz-animation: click-wave 0.25s;
+  animation: click-wave 0.25s;
+  background: #e91e63;
+  content: "";
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
