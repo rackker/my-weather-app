@@ -24,29 +24,47 @@ h1 {
   letter-spacing: 0.6rem;
 }
 
-.city-img {
-  aspect-ratio: 1/1;
-  object-fit: cover;
+.container {
+  max-width: 1000px;
 }
 
-.img-thumbnail {
-  border: 3px solid rgb(233, 30, 99, 0.2);
+.weather-now {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.card-no-border {
-  border: none;
-  background: none;
-  max-width: 50%;
+#main-temp {
+  font-size: 44pt;
+}
+
+#main-icon {
+  font-size: 36pt;
+}
+
+.weather-desc {
+  font-size: 24pt;
+}
+
+#daytime {
+  font-size: 18pt;
+}
+
+.bi {
+  font-size: 24pt;
+}
+
+.row {
+  padding: 5px 0 5px 0;
+}
+
+#city-name {
+  padding-top: 20px;
 }
 
 .col-lg-2 {
   font-size: 16pt;
-  line-height: 2em;
-}
-
-.bi {
-  font-size: 20pt;
-  line-height: 1.6em;
+  line-height: 2.5em;
 }
 
 .last-day {
@@ -131,4 +149,26 @@ h1 {
 }
 .option-input.radio::after {
   border-radius: 50%;
+}
+
+#city-search {
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease-in-out, ease-in-out;
+  transition-delay: 0s, 0s;
+}
+
+#city-search:focus {
+  box-shadow: 0 0 2pt 2pt rgb(233, 30, 99, 0.4);
+  border-color: rgb(233, 30, 99, 0.4);
+}
+
+#foot-note {
+  color: rgba(var(--bs-body-color-rgb), 0.75);
+  transition: ease-in-out 0.2s;
+}
+
+#foot-note:hover {
+  color: #e91e63;
 }

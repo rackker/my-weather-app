@@ -11,10 +11,16 @@
       crossorigin="anonymous"
     />
     <!-- Option 1: Include in HTML -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Zilla+Slab:wght@400;600&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Zilla+Slab:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="src/styles.css" />
   </head>
@@ -71,35 +77,17 @@
         melbourne
       </h1>
       <br />
-      <div class="card mb-3 card-no-border" style="max-width: 70%; margin: 0 auto;">
-        <div class="row g-0">
-          <div class="col-md-4" style="margin: 0 auto;">
-            <img
-              src="images/melbourne.jpg"
-              class="img-fluid rounded-circle img-thumbnail city-img"
-              alt="Melbourne Flinders Street Station"
-            />
-          </div>
-          <div class="col-md-4 text-center" style="margin: 0 auto;">
-            <div class="card-body">
-              <h5 class="card-title display-4" id="main-temp">20°C</h5>
-              <p class="card-text lh-base h4" id="weather-desc">
-                Sunny <i class="bi bi-brightness-high-fill"></i> <div class="h5" id="daytime">Friday 9pm</div>
-               
-              </p>
-            </div>
-              
-            </div>
-          </div>
-        </div>
-      
-    
-      
+
+      <div class="weather-now lh-base h4">
+        <div id="main-temp">20°C</div>
+        <div><i class="bi bi-brightness-high-fill" id="main-icon"></i></div>
+        <div class="weather-desc" id="weather-desc">Sunny</div>
+        <div id="daytime">Friday 9pm</div>
+      </div>
+
       <br />
       <small>
         <div class="lh-base text-muted text-center">
-          <span class="weather-extras" id="precip"> Precipitation: 4% </span>
-          <div class="vr"></div>
           <span class="weather-extras" id="humidity"> Humidity: 90%</span>
           <div class="vr"></div>
           <span class="weather-extras" id="wind-speed"> Wind: 2km/h</span>
@@ -108,65 +96,45 @@
       <br />
 
       <div class="row justify-content-md-center first-day">
-        <div class="col col-lg-2 text-end fw-bold">
-          18°C
-        </div>
+        <div class="col col-lg-2 text-end fw-bold">18°C</div>
         <div class="col-md-auto text-center">
-        <i class="bi bi-brightness-high-fill"></i>
+          <i class="bi bi-brightness-high-fill"></i>
         </div>
-        <div class="col col-lg-2">
-          Saturday
-        </div>
+        <div class="col col-lg-2">Saturday</div>
       </div>
 
       <div class="row justify-content-md-center">
-        <div class="col col-lg-2 text-end fw-bold">
-          17°C
-        </div>
+        <div class="col col-lg-2 text-end fw-bold">17°C</div>
         <div class="col-md-auto text-center">
-        <i class="bi bi-cloud-sun-fill"></i>
+          <i class="bi bi-cloud-sun-fill"></i>
         </div>
-        <div class="col col-lg-2">
-          Sunday
-        </div>
+        <div class="col col-lg-2">Sunday</div>
       </div>
       <div class="row justify-content-md-center">
-        <div class="col col-lg-2 text-end fw-bold">
-          19°C
-        </div>
+        <div class="col col-lg-2 text-end fw-bold">19°C</div>
         <div class="col-md-auto text-center">
-        <i class="bi bi-wind"></i>
+          <i class="bi bi-wind"></i>
         </div>
-        <div class="col col-lg-2">
-          Monday
-        </div>
+        <div class="col col-lg-2">Monday</div>
       </div>
 
       <div class="row justify-content-md-center">
-        <div class="col col-lg-2 text-end fw-bold">
-          20°C
-        </div>
+        <div class="col col-lg-2 text-end fw-bold">20°C</div>
         <div class="col-md-auto text-center">
-        <i class="bi bi-cloud-rain-fill"></i>
+          <i class="bi bi-cloud-rain-fill"></i>
         </div>
-        <div class="col col-lg-2">
-          Tuesday
-        </div>
+        <div class="col col-lg-2">Tuesday</div>
       </div>
 
       <div class="row justify-content-md-center last-day">
-        <div class="col col-lg-2 text-end fw-bold">
-          19°C
-        </div>
+        <div class="col col-lg-2 text-end fw-bold">19°C</div>
         <div class="col-md-auto text-center">
-        <i class="bi bi-cloud-lightning-fill"></i>
+          <i class="bi bi-cloud-lightning-fill"></i>
         </div>
-        <div class="col col-lg-2">
-          Wednesday
-        </div>
+        <div class="col col-lg-2">Wednesday</div>
       </div>
       <hr />
-      <div class="hstack gap-2 col-md-6 mx-auto">
+      <div class="hstack gap-2 col-md-8 mx-auto">
         <input
           class="form-control me-auto"
           type="text"
@@ -174,15 +142,26 @@
           id="city-search"
           placeholder="Search for your location"
         />
-        <button type="submit" class="btn btn-secondary" id="location-search">Search</button>
-        <button type="submit" class="btn btn-secondary" id="current-location">Current</button>
+        <button type="submit" class="btn btn-secondary" id="location-search">
+          Search
+        </button>
+        <button type="submit" class="btn btn-secondary" id="current-location">
+          Current
+        </button>
       </div>
-      
+
       <br />
-      <div class="text-center text-muted"><small>coded by rac.k
-        <br>
-        <a href="https://github.com/rackker/my-weather-app" target="_blank">view code in GitHub</a>
-      </small></div>
+      <div class="text-center text-muted">
+        <small>
+          <a
+            href="https://github.com/rackker/my-weather-app"
+            target="_blank"
+            id="foot-note"
+            >open-source code</a
+          >
+          by rac.k
+        </small>
+      </div>
     </div>
     <script src="src/index.js"></script>
   </body>
