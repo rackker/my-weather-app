@@ -7,12 +7,39 @@ function getWeather(response) {
   let desc = response.data.weather[0].main;
   let windSp = Math.round(response.data.wind.speed);
   let humid = Math.round(response.data.main.humidity);
+  let dateTime = response.data.dt;
   document.querySelector("#city-name").innerHTML = `${cityName}`;
   document.querySelector("#main-temp").innerHTML = `${temp}°C`;
   document.querySelector("#weather-desc").innerHTML = `${desc}`;
   //need to add dynamic emoji eg if clouds = ⛅
   document.querySelector("#wind-speed").innerHTML = `Wind: ${windSp}km/h`;
   document.querySelector("#humidity").innerHTML = `Humidity: ${humid}%`;
+  document.querySelector("#last-update-datetime").innerHTML = lastUpdateTime(
+    dateTime * 1000
+  );
+}
+
+//how to convert to time zone of each city? rather than local time?
+
+function lastUpdateTime(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day} ${hours}:${minutes}`;
 }
 
 //radio buttons mapped to Melbourne, Sydney & Brisbane weather API call
