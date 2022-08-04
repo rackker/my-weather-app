@@ -1,3 +1,5 @@
+window.onload = melbRadio();
+
 //main function to get weather from API and set HTML values on page
 function getWeather(response) {
   let temp = Math.round(response.data.main.temp);
@@ -12,6 +14,41 @@ function getWeather(response) {
   document.querySelector("#wind-speed").innerHTML = `Wind: ${windSp}km/h`;
   document.querySelector("#humidity").innerHTML = `Humidity: ${humid}%`;
 }
+
+//radio buttons mapped to Melbourne, Sydney & Brisbane weather API call
+function melbRadio() {
+  let apiKey = "721dfdcfc09e07da4b6904753634db8b";
+  let melbLat = -37.81;
+  let melbLon = 144.96;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${melbLat}&lon=${melbLon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getWeather);
+}
+
+let melbRadioChecked = document.querySelector("#radioCitySelector1");
+melbRadioChecked.addEventListener("click", melbRadio);
+
+function sydRadio() {
+  let apiKey = "721dfdcfc09e07da4b6904753634db8b";
+  let sydLat = -33.868;
+  let sydLon = 151.2;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${sydLat}&lon=${sydLon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getWeather);
+}
+
+let sydRadioChecked = document.querySelector("#radioCitySelector2");
+sydRadioChecked.addEventListener("click", sydRadio);
+
+function brisRadio() {
+  let apiKey = "721dfdcfc09e07da4b6904753634db8b";
+  let brisLat = -27.469;
+  let brisLon = 153.02;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${brisLat}&lon=${brisLon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getWeather);
+}
+
+let brisRadioChecked = document.querySelector("#radioCitySelector3");
+brisRadioChecked.addEventListener("click", brisRadio);
+
 //sends current location lat lon to weather API
 function handlePosition(position) {
   let apiKey = "721dfdcfc09e07da4b6904753634db8b";
