@@ -31,8 +31,6 @@ let celsiusTemp = null;
 
 function lastUpdateTime(timestamp) {
   let date = new Date(timestamp);
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
   let days = [
     "Sunday",
     "Monday",
@@ -43,11 +41,40 @@ function lastUpdateTime(timestamp) {
     "Saturday",
   ];
   let day = days[date.getDay()];
+  let hours = [
+    12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    11,
+  ];
+  let hour = hours[date.getHours()];
 
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
+  function morningEvening() {
+    let result;
+    if (date.getHours() < 12) {
+      result = "am";
+    } else {
+      result = "pm";
+    }
+    return result;
   }
-  return `Last updated ${day} ${hours}:${minutes}`;
+
+  let amPM = morningEvening();
+  let mins = date.getMinutes();
+  if (mins < 10) {
+    mins = `0${mins}`;
+  }
+  return `Last updated ${day} ${hour}:${mins} ${amPM}`;
+}
+
+//converting timezones
+function changeTimeZone(response) {
+  let cityTimeZone = response.data.timezoneId;
+  let updatedTime = new Date().toLocaleString("en-AU", {
+    timeZone: cityTimeZone,
+    weekday: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  localDayTime.innerHTML = updatedTime;
 }
 
 //radio buttons mapped to Melbourne, Sydney & Brisbane weather API call
@@ -57,6 +84,8 @@ function melbRadio() {
   let melbLon = 144.96;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${melbLat}&lon=${melbLon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
+  let timeZoneApiUrl = `http://api.geonames.org/timezoneJSON?lat=${melbLat}&lng=${melbLon}&username=rack`;
+  axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 
 let melbRadioChecked = document.querySelector("#radioCitySelector1");
@@ -68,6 +97,8 @@ function sydRadio() {
   let sydLon = 151.2;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${sydLat}&lon=${sydLon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
+  let timeZoneApiUrl = `http://api.geonames.org/timezoneJSON?lat=${sydLat}&lng=${sydLon}&username=rack`;
+  axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 
 let sydRadioChecked = document.querySelector("#radioCitySelector2");
@@ -79,6 +110,8 @@ function brisRadio() {
   let brisLon = 153.02;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${brisLat}&lon=${brisLon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
+  let timeZoneApiUrl = `http://api.geonames.org/timezoneJSON?lat=${brisLat}&lng=${brisLon}&username=rack`;
+  axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 
 let brisRadioChecked = document.querySelector("#radioCitySelector3");
@@ -88,8 +121,9 @@ brisRadioChecked.addEventListener("click", brisRadio);
 function handlePosition(position) {
   let apiKey = "721dfdcfc09e07da4b6904753634db8b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(getWeather);
+  let timeZoneApiUrl = `http://api.geonames.org/timezoneJSON?lat=${position.coords.latitude}&lng=${position.coords.longitude}&username=rack`;
+  axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 //uses geolocation API to get browser IP address
 function getCurrentPosition() {
@@ -102,6 +136,8 @@ function getWeatherforCity(response) {
   let apiKey = "721dfdcfc09e07da4b6904753634db8b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
+  let timeZoneApiUrl = `http://api.geonames.org/timezoneJSON?lat=${lat}&lng=${lon}&username=rack`;
+  axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 //gets value input into search bar, calls above function.
 function getSearchCity() {
@@ -118,37 +154,6 @@ function enterPress(event) {
     document.getElementById("location-search").click();
   }
 }
-//convert temperature metrics
-function displayTempAsF(event) {
-  event.preventDefault();
-  let checkElement = farenheitLink.innerHTML;
-  let check = checkElement.includes("Farenheit");
-  console.log(check);
-  if (check == true) {
-    let farenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-    document.querySelector("#main-temp").innerHTML = `${farenheitTemp}°F`;
-    farenheitLink.innerHTML = "Convert to Celsius";
-  } else {
-    document.querySelector("#main-temp").innerHTML = `${celsiusTemp}°C`;
-    farenheitLink.innerHTML = "Convert to Farenheit";
-  }
-}
-
-//triggers function to get current location on "Current" button click
-let currentButton = document.querySelector("#current-location");
-currentButton.addEventListener("click", getCurrentPosition);
-//triggers function to get searched location on "Search" button click
-let searchButton = document.querySelector("#location-search");
-searchButton.addEventListener("click", getSearchCity);
-//ensure search bar also works on enter keypress
-let searchInput = document.getElementById("city-search");
-searchInput.addEventListener("keypress", enterPress);
-//farenheit conversion
-let farenheitLink = document.querySelector("#farenheit-link");
-farenheitLink.addEventListener("click", displayTempAsF);
-
-// still to work on - forecast data, metric conversion, timezone conversion
-// forecast endpoint = api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
 
 //date & time function
 function currentDayTime(now) {
@@ -190,3 +195,35 @@ function currentDayTime(now) {
 let now = new Date();
 let localDayTime = document.querySelector("#daytime");
 localDayTime.innerHTML = currentDayTime(now);
+
+//convert temperature metrics
+function displayTempAsF(event) {
+  event.preventDefault();
+  let checkElement = farenheitLink.innerHTML;
+  let check = checkElement.includes("Farenheit");
+
+  if (check == true) {
+    let farenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+    document.querySelector("#main-temp").innerHTML = `${farenheitTemp}°F`;
+    farenheitLink.innerHTML = "Convert to Celsius";
+  } else {
+    document.querySelector("#main-temp").innerHTML = `${celsiusTemp}°C`;
+    farenheitLink.innerHTML = "Convert to Farenheit";
+  }
+}
+
+//triggers function to get current location on "Current" button click
+let currentButton = document.querySelector("#current-location");
+currentButton.addEventListener("click", getCurrentPosition);
+//triggers function to get searched location on "Search" button click
+let searchButton = document.querySelector("#location-search");
+searchButton.addEventListener("click", getSearchCity);
+//ensure search bar also works on enter keypress
+let searchInput = document.getElementById("city-search");
+searchInput.addEventListener("keypress", enterPress);
+//farenheit conversion
+let farenheitLink = document.querySelector("#farenheit-link");
+farenheitLink.addEventListener("click", displayTempAsF);
+
+// still to work on - forecast data, timezone conversion
+// forecast endpoint = api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
