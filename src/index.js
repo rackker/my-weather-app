@@ -16,7 +16,7 @@ function getWeather(response) {
   document.querySelector("#main-temp").innerHTML = `${temp}°C`;
   document.querySelector("#weather-desc").innerHTML = `${desc}`;
   let weatherIcon = document.querySelector("#icon-main");
-  weatherIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
   weatherIcon.setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#wind-speed").innerHTML = `Wind: ${windSp}km/h`;
   document.querySelector("#humidity").innerHTML = `Humidity: ${humid}%`;
@@ -84,7 +84,7 @@ function melbRadio() {
   let melbLon = 144.96;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${melbLat}&lon=${melbLon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
-  let timeZoneApiUrl = `http://secure.geonames.org/timezoneJSON?lat=${melbLat}&lng=${melbLon}&username=rack`;
+  let timeZoneApiUrl = `https://secure.geonames.org/timezoneJSON?lat=${melbLat}&lng=${melbLon}&username=rack`;
   axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 
@@ -97,7 +97,7 @@ function sydRadio() {
   let sydLon = 151.2;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${sydLat}&lon=${sydLon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
-  let timeZoneApiUrl = `http://secure.geonames.org/timezoneJSON?lat=${sydLat}&lng=${sydLon}&username=rack`;
+  let timeZoneApiUrl = `https://secure.geonames.org/timezoneJSON?lat=${sydLat}&lng=${sydLon}&username=rack`;
   axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 
@@ -110,7 +110,7 @@ function brisRadio() {
   let brisLon = 153.02;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${brisLat}&lon=${brisLon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
-  let timeZoneApiUrl = `http://secure.geonames.org/timezoneJSON?lat=${brisLat}&lng=${brisLon}&username=rack`;
+  let timeZoneApiUrl = `https://secure.geonames.org/timezoneJSON?lat=${brisLat}&lng=${brisLon}&username=rack`;
   axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 
@@ -122,7 +122,7 @@ function handlePosition(position) {
   let apiKey = "721dfdcfc09e07da4b6904753634db8b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
-  let timeZoneApiUrl = `http://secure.geonames.org/timezoneJSON?lat=${position.coords.latitude}&lng=${position.coords.longitude}&username=rack`;
+  let timeZoneApiUrl = `https://secure.geonames.org/timezoneJSON?lat=${position.coords.latitude}&lng=${position.coords.longitude}&username=rack`;
   axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 //uses geolocation API to get browser IP address
@@ -136,7 +136,7 @@ function getWeatherforCity(response) {
   let apiKey = "721dfdcfc09e07da4b6904753634db8b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getWeather);
-  let timeZoneApiUrl = `http://secure.geonames.org/timezoneJSON?lat=${lat}&lng=${lon}&username=rack`;
+  let timeZoneApiUrl = `https://secure.geonames.org/timezoneJSON?lat=${lat}&lng=${lon}&username=rack`;
   axios.get(timeZoneApiUrl).then(changeTimeZone);
 }
 //gets value input into search bar, calls above function.
