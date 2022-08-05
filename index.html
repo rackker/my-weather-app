@@ -80,7 +80,9 @@
 
       <div class="weather-now lh-base h4">
         <div id="main-temp">20°C</div>
-        <div><i class="bi bi-brightness-high-fill" id="main-icon"></i></div>
+        <div>
+          <img src=".." alt=".." id="icon-main" />
+        </div>
         <div class="weather-desc" id="weather-desc">Sunny</div>
         <div id="daytime">Friday 9pm</div>
       </div>
@@ -134,9 +136,14 @@
         <div class="col col-lg-2">Wednesday</div>
       </div>
       <div class="weather-now">
-        <small
-          >Last updated
-          <span id="last-update-datetime">Placeholder time</span>
+        <small>
+          <span id="last-update-datetime" class="update-metric"
+            >Placeholder time</span
+          >
+          <div class="vr"></div>
+          <a href="#" id="farenheit-link" class="update-metric"
+            >Convert to Farenheit</a
+          >
         </small>
       </div>
       <hr />

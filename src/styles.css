@@ -10,11 +10,11 @@ body {
 
   /* daytime background */
   /* background: rgb(243,251,254);
-background: linear-gradient(0deg, rgba(243,251,254,1) 0%, rgba(193,235,247,1) 49%, rgba(48,127,184,1) 100%); */
+  background: linear-gradient(0deg, rgba(243,251,254,1) 0%, rgba(193,235,247,1) 49%, rgba(48,127,184,1) 100%); */
 
   /* nighttime background */
   /* background: rgb(65,43,107);
-background: linear-gradient(0deg, rgba(65,43,107,1) 0%, rgba(42,22,65,1) 50%, rgba(2,2,23,1) 100%); */
+  background: linear-gradient(0deg, rgba(65,43,107,1) 0%, rgba(42,22,65,1) 50%, rgba(2,2,23,1) 100%); */
 }
 
 h1 {
@@ -22,6 +22,15 @@ h1 {
   margin: 0 auto;
   color: #e91e63;
   letter-spacing: 0.6rem;
+}
+
+a {
+  color: rgba(var(--bs-body-color-rgb), 0.75);
+  transition: ease-in-out 0.2s;
+}
+
+a:hover {
+  color: #e91e63;
 }
 
 .container {
@@ -38,12 +47,11 @@ h1 {
   font-size: 44pt;
 }
 
-#main-icon {
-  font-size: 36pt;
-}
-
 .weather-desc {
   font-size: 24pt;
+}
+
+.weather-desc::first-letter {
   text-transform: capitalize;
 }
 
@@ -79,6 +87,10 @@ h1 {
 .weather-extras {
   padding: 20px;
   transition: ease-in-out 0.2s;
+}
+
+.update-metric {
+  padding: 20px;
 }
 
 .weather-extras:hover {
@@ -163,13 +175,4 @@ h1 {
 #city-search:focus {
   box-shadow: 0 0 2pt 2pt rgb(233, 30, 99, 0.4);
   border-color: rgb(233, 30, 99, 0.4);
-}
-
-#foot-note {
-  color: rgba(var(--bs-body-color-rgb), 0.75);
-  transition: ease-in-out 0.2s;
-}
-
-#foot-note:hover {
-  color: #e91e63;
 }

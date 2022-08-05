@@ -4,20 +4,28 @@ window.onload = melbRadio();
 function getWeather(response) {
   let temp = Math.round(response.data.main.temp);
   let cityName = response.data.name;
-  let desc = response.data.weather[0].main;
+  let desc = response.data.weather[0].description;
   let windSp = Math.round(response.data.wind.speed);
   let humid = Math.round(response.data.main.humidity);
   let dateTime = response.data.dt;
+  let icon = response.data.weather[0].icon;
+
+  celsiusTemp = temp;
+
   document.querySelector("#city-name").innerHTML = `${cityName}`;
   document.querySelector("#main-temp").innerHTML = `${temp}°C`;
   document.querySelector("#weather-desc").innerHTML = `${desc}`;
-  //need to add dynamic emoji eg if clouds = ⛅
+  let weatherIcon = document.querySelector("#icon-main");
+  weatherIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  weatherIcon.setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#wind-speed").innerHTML = `Wind: ${windSp}km/h`;
   document.querySelector("#humidity").innerHTML = `Humidity: ${humid}%`;
   document.querySelector("#last-update-datetime").innerHTML = lastUpdateTime(
     dateTime * 1000
   );
 }
+
+let celsiusTemp = null;
 
 //how to convert to time zone of each city? rather than local time?
 
@@ -39,7 +47,7 @@ function lastUpdateTime(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  return `${day} ${hours}:${minutes}`;
+  return `Last updated ${day} ${hours}:${minutes}`;
 }
 
 //radio buttons mapped to Melbourne, Sydney & Brisbane weather API call
@@ -110,6 +118,22 @@ function enterPress(event) {
     document.getElementById("location-search").click();
   }
 }
+//convert temperature metrics
+function displayTempAsF(event) {
+  event.preventDefault();
+  let checkElement = farenheitLink.innerHTML;
+  let check = checkElement.includes("Farenheit");
+  console.log(check);
+  if (check == true) {
+    let farenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+    document.querySelector("#main-temp").innerHTML = `${farenheitTemp}°F`;
+    farenheitLink.innerHTML = "Convert to Celsius";
+  } else {
+    document.querySelector("#main-temp").innerHTML = `${celsiusTemp}°C`;
+    farenheitLink.innerHTML = "Convert to Farenheit";
+  }
+}
+
 //triggers function to get current location on "Current" button click
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", getCurrentPosition);
@@ -119,8 +143,11 @@ searchButton.addEventListener("click", getSearchCity);
 //ensure search bar also works on enter keypress
 let searchInput = document.getElementById("city-search");
 searchInput.addEventListener("keypress", enterPress);
+//farenheit conversion
+let farenheitLink = document.querySelector("#farenheit-link");
+farenheitLink.addEventListener("click", displayTempAsF);
 
-// still to work on - forecast data, dynamic image, radio buttons
+// still to work on - forecast data, metric conversion, timezone conversion
 // forecast endpoint = api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
 
 //date & time function
