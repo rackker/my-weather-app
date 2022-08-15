@@ -23,6 +23,8 @@ function getWeather(response) {
   document.querySelector("#last-update-datetime").innerHTML = lastUpdateTime(
     dateTime * 1000
   );
+
+  displayForecast();
 }
 
 let celsiusTemp = null;
@@ -75,6 +77,27 @@ function changeTimeZone(response) {
     minute: "2-digit",
   });
   localDayTime.innerHTML = updatedTime;
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div>`;
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="row justify-content-md-center">
+    <div class="col col-lg-2 text-end fw-bold">18°C</div>
+    <div class="col-md-auto text-center">
+    <i class="bi bi-brightness-high-fill"></i>
+    </div>
+    <div class="col col-lg-2">${day}</div>
+    </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 //radio buttons mapped to Melbourne, Sydney & Brisbane weather API call

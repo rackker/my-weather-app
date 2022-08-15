@@ -76,11 +76,8 @@ a:hover {
   line-height: 2.5em;
 }
 
-.last-day {
+#forecast {
   margin-bottom: 50px;
-}
-
-.first-day {
   margin-top: 20px;
 }
 
