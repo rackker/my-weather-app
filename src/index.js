@@ -1,5 +1,14 @@
 window.onload = melbRadio();
 
+//forecast API function
+function getForecast(coordinates) {
+  let apiKey = "721dfdcfc09e07da4b6904753634db8b";
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
+
 //main function to get weather from API and set HTML values on page
 function getWeather(response) {
   let temp = Math.round(response.data.main.temp);
@@ -24,13 +33,34 @@ function getWeather(response) {
     dateTime * 1000
   );
 
-  displayForecast();
+  getForecast(response.data.coord);
 }
 
 let celsiusTemp = null;
 
-//how to convert to time zone of each city? rather than local time?
+//updates HTML to display forecast from API data
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div>`;
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="row justify-content-md-center">
+    <div class="col col-lg-2 text-end fw-bold">18°C</div>
+    <div class="col-md-auto text-center">
+    <i class="bi bi-brightness-high-fill"></i>
+    </div>
+    <div class="col col-lg-2">${day}</div>
+    </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
+//update time under today's weather with time relevant to the displayed city
 function lastUpdateTime(timestamp) {
   let date = new Date(timestamp);
   let days = [
@@ -77,27 +107,6 @@ function changeTimeZone(response) {
     minute: "2-digit",
   });
   localDayTime.innerHTML = updatedTime;
-}
-
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div>`;
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-    <div class="row justify-content-md-center">
-    <div class="col col-lg-2 text-end fw-bold">18°C</div>
-    <div class="col-md-auto text-center">
-    <i class="bi bi-brightness-high-fill"></i>
-    </div>
-    <div class="col col-lg-2">${day}</div>
-    </div>
-    `;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
 }
 
 //radio buttons mapped to Melbourne, Sydney & Brisbane weather API call
@@ -247,6 +256,3 @@ searchInput.addEventListener("keypress", enterPress);
 //farenheit conversion
 let farenheitLink = document.querySelector("#farenheit-link");
 farenheitLink.addEventListener("click", displayTempAsF);
-
-// still to work on - forecast data, timezone conversion
-// forecast endpoint = api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
