@@ -76,6 +76,10 @@ a:hover {
   line-height: 2.5em;
 }
 
+#forecast-icon {
+  max-width: 60%;
+}
+
 #forecast {
   margin-bottom: 50px;
   margin-top: 20px;
