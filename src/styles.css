@@ -1,36 +1,55 @@
 body {
   font-family: "Zilla Slab", serif;
-  /* sunrise background */
-  /* background: rgb(241,145,167);
-  background: linear-gradient(0deg, rgba(241,145,167,1) 0%, rgba(240,228,233,1) 32%, rgba(113,213,246,1) 100%); */
-
-  /* sunset background */
-  /* background: rgb(250,171,49);
-  background: linear-gradient(0deg, rgba(250,171,49,1) 0%, rgba(232,46,49,1) 38%, rgba(140,52,98,1) 73%, rgba(65,58,78,1) 100%); */
-
-  /* daytime background */
-  /* background: rgb(243,251,254);
-  background: linear-gradient(0deg, rgba(243,251,254,1) 0%, rgba(193,235,247,1) 49%, rgba(48,127,184,1) 100%); */
-
-  /* nighttime background */
-  /* background: rgb(65,43,107);
-  background: linear-gradient(0deg, rgba(65,43,107,1) 0%, rgba(42,22,65,1) 50%, rgba(2,2,23,1) 100%); */
 }
 
 h1 {
   font-family: "Comfortaa", cursive;
   margin: 0 auto;
-  color: #e91e63;
+  color: #7c848d;
   letter-spacing: 0.6rem;
 }
 
-a {
-  color: rgba(var(--bs-body-color-rgb), 0.75);
-  transition: ease-in-out 0.2s;
+/* sunrise background */
+.sunrise-background {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 153, 110, 1) 0%,
+    rgba(255, 245, 148, 1) 33%,
+    rgba(185, 254, 160, 1) 60%,
+    rgba(45, 222, 226, 1) 100%
+  );
 }
 
-a:hover {
-  color: #e91e63;
+/* sunset background */
+.sunset-background {
+  background: linear-gradient(
+    0deg,
+    rgba(250, 171, 49, 1) 0%,
+    rgba(232, 46, 49, 1) 38%,
+    rgba(140, 52, 98, 1) 73%,
+    rgba(65, 58, 78, 1) 100%
+  );
+}
+
+/* daytime background */
+.daytime-background {
+  background: linear-gradient(
+    0deg,
+    rgba(243, 251, 254, 1) 0%,
+    rgba(193, 235, 247, 1) 49%,
+    rgba(48, 127, 184, 1) 100%
+  );
+}
+
+/* nighttime background */
+.nighttime-background {
+  background: linear-gradient(
+    0deg,
+    rgba(65, 43, 107, 1) 0%,
+    rgba(42, 22, 65, 1) 50%,
+    rgba(2, 2, 23, 1) 100%
+  );
+  color: white;
 }
 
 .container {
@@ -87,15 +106,6 @@ a:hover {
 
 .weather-extras {
   padding: 20px;
-  transition: ease-in-out 0.2s;
-}
-
-.update-metric {
-  padding: 20px;
-}
-
-.weather-extras:hover {
-  color: #e91e63;
 }
 
 .custom-radio {
@@ -141,10 +151,10 @@ a:hover {
   z-index: 1000;
 }
 .option-input:hover {
-  background: #9faab7;
+  background: #7c848d;
 }
 .option-input:checked {
-  background: #e91e63;
+  background: #edf0f4;
   border: none;
 }
 
@@ -152,7 +162,7 @@ a:hover {
   -webkit-animation: click-wave 0.25s;
   -moz-animation: click-wave 0.25s;
   animation: click-wave 0.25s;
-  background: #e91e63;
+  background: #edf0f4;
   content: "";
   display: block;
   position: relative;
@@ -174,6 +184,6 @@ a:hover {
 }
 
 #city-search:focus {
-  box-shadow: 0 0 2pt 2pt rgb(233, 30, 99, 0.4);
-  border-color: rgb(233, 30, 99, 0.4);
+  box-shadow: 0 0 2pt 2pt rgba(109, 109, 109, 0.4);
+  border-color: rgb(109, 109, 109, 0.4);
 }

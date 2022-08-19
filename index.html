@@ -5,27 +5,27 @@
     <meta charset="UTF-8" />
     <!-- CSS only -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    crossorigin="anonymous"
     />
     <!-- Option 1: Include in HTML -->
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Zilla+Slab:wght@400;600&display=swap"
-      rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Zilla+Slab:wght@400;600&display=swap"
+    rel="stylesheet"
     />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="src/styles.css" />
   </head>
 
-  <body>
+  <body id="body-div">
     <div class="container">
       <menu class="city-select">
         <div class="row text-center">
@@ -89,7 +89,7 @@
 
       <br />
       <small>
-        <div class="lh-base text-muted text-center">
+        <div class="lh-base text-center">
           <span class="weather-extras" id="humidity"> Humidity: 90%</span>
           <div class="vr"></div>
           <span class="weather-extras" id="wind-speed"> Wind: 2km/h</span>
@@ -104,11 +104,11 @@
           <span id="last-update-datetime" class="update-metric"
             >Placeholder time</span
           >
-          <div class="vr"></div>
+          <!-- <div class="vr"></div>
           <a href="#" id="farenheit-link" class="update-metric"
             >Convert to Farenheit</a
           >
-        </small>
+        </small> -->
       </div>
       <hr />
       <div class="hstack gap-2 col-md-8 mx-auto">
@@ -128,7 +128,7 @@
       </div>
 
       <br />
-      <div class="text-center text-muted">
+      <div class="text-center">
         <small>
           <a
             href="https://github.com/rackker/my-weather-app"
